@@ -8,12 +8,10 @@ import 'package:intl/intl.dart';
 
 import '../config/constante.dart';
 
-class ListArticleProvider extends ChangeNotifier {
+class ListArticleProvider with ChangeNotifier {
   ListArticleProvider() {
     articleService.listArticle.then((data) {
       var res = jsonDecode(utf8.decode(data));
-      print(data);
-      // print(res['status']);
       if(res['status']){
         List<dynamic> articlesData = res['result'];
         for (var articleData in articlesData) {
@@ -22,7 +20,6 @@ class ListArticleProvider extends ChangeNotifier {
             String type = articleData['type'];
             String auteur = articleData['auteur'];
             String date = articleData['date_publication'];
-            print(date);
             DateFormat dateFormat = DateFormat("yyyy-MM-ddTHH:mm:ss");
 
             // String string = dateFormat.format(DateTime.now()); //Converting DateTime object to String
@@ -47,7 +44,6 @@ class ListArticleProvider extends ChangeNotifier {
             Article article = Article(vues:vues,id:id,image: image, titre: titre, description: description, type: type, auteur: auteur, datePublication: datePublication, sections: sections, auteurImage: auteurImage);
             _items.add(article);
             loaded = true;
-            print(article.titre);
             notifyListeners();
         }
        }

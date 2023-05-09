@@ -13,7 +13,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-        iconTheme: IconThemeData(color: Constante.secondary)
+        iconTheme: const IconThemeData(color: Constante.secondary)
       ),
       child: CurvedNavigationBar(
         height: 60,
